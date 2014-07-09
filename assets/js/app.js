@@ -104,7 +104,7 @@ var beers = L.geoJson(null, {
 });
 $.getJSON("data/beers.geojson", function (data) {
   beers.addData(data);
-  //map.addLayer(beerLayer);
+  map.addLayer(beerLayer);
 });
 
 map = L.map("map", {
