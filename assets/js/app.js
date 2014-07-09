@@ -59,7 +59,7 @@ var markerClusters = new L.MarkerClusterGroup({
   disableClusteringAtZoom: 16
 });
 
-/* Empty layer placeholder to add to layer control for listening when to add/remove theaters to markerClusters layer */
+/* Empty layer placeholder to add to layer control for listening when to add/remove beers to markerClusters layer */
 var beerLayer = L.geoJson(null);
 var beers = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
@@ -110,7 +110,7 @@ $.getJSON("data/beers.geojson", function (data) {
 map = L.map("map", {
   zoom: 10,
   center: [42.48814, -71.25861],
-  layers: [mapboxTiles, beers, markerClusters, highlight],
+  layers: [mapboxTiles, markerClusters, highlight],
   zoomControl: false,
   attributionControl: false
 });
