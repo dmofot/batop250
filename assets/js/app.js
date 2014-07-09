@@ -35,7 +35,7 @@ function sidebarClick(id) {
     sidebar.hide();
     getViewport();
   }
-  map.addLayer(beerLayer);
+  //map.addLayer(beerLayer);
   var layer = markerClusters.getLayer(id);
   markerClusters.zoomToShowLayer(layer, function() {
     map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 18);
@@ -104,7 +104,7 @@ var beers = L.geoJson(null, {
 });
 $.getJSON("data/beers.geojson", function (data) {
   beers.addData(data);
-  map.addLayer(beerLayer);
+  //map.addLayer(beerLayer);
 });
 
 map = L.map("map", {
