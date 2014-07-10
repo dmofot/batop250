@@ -76,7 +76,7 @@ var beers = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Name</th><td>" + feature.properties.name + "</td></tr>" + "<tr><th>Rank</th><td>" + feature.properties.rank + "</td></tr>" + "<tr><th>Address</th><td>" + feature.properties.address + "</td></tr>" + "<tr><th>Website</th><td><a class='url-break' href='" + feature.properties.homepage + "' target='_blank'>" + feature.properties.homepage + "</a></td></tr>" + "<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Name</th><td>" + feature.properties.name + "</td></tr>" + "<tr><th>Address</th><td>" + feature.properties.address + "</td></tr>" + "<tr><th>ABV</th><td>" + feature.properties.abv + "</td></tr>" + "<tr><th>Rank</th><td>" + feature.properties.rank + "</td></tr>" + "<tr><th>Rating</th><td>" + feature.properties.rating + "</td></tr>" + "<tr><th>Website</th><td><a class='url-break' href='" + feature.properties.homepage + "' target='_blank'>" + feature.properties.homepage + "</a></td></tr>" + "<tr><th>BA Page</th><td><a class='url-break' href='" + feature.properties.beeradvocatepage + "' target='_blank'>" + feature.properties.beeradvocatepage + "</a></td></tr>" + "<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.name);
