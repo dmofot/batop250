@@ -54,7 +54,6 @@
             <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe" style="color: white"></i>&nbsp;&nbsp;Tools <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="map.fitBounds(beers.getBounds()); return false;"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
-              <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="$('#legendModal').modal('show'); return false;"><i class="fa fa-picture-o"></i>&nbsp;&nbsp;Show Legend</a></li>
             </ul>
           </li>
           <li class="dropdown">
@@ -138,16 +137,18 @@
             </ul>
             <div class="tab-content" id="aboutTabsContent" style="padding-top: 10px;">
               <div class="tab-pane fade active in" id="about">
-                <p>A simple, responsive template for building web mapping applications with <a href="http://getbootstrap.com/">Bootstrap 3</a>, <a href="http://leafletjs.com/" target="_blank">Leaflet</a>, and <a href="http://twitter.github.io/typeahead.js/" target="_blank">typeahead.js</a>. Open source, MIT licensed, and available on <a href="https://github.com/dmofot/beerleaf" target="_blank">GitHub</a>.</p>
+                <p>Open source, MIT licensed, and available on <a href="https://github.com/dmofot/batop250" target="_blank">GitHub</a>.</p>
+                <p>After <a href="http://www.meetup.com/Maptime-Boston/" target="_blank">Maptime Boston's</a> first event on <a href="http://www.meetup.com/Maptime-Boston/events/188255552/" target="_blank">Intro to Web Maps and Mappers</a>, a comment pointed out an article on <a href="http://epic-curiousity.com/2014/06/beer-bucket-list-map-top-250.html" target="_blank">The Top 250 Beers in the World: Mapped</a>. This is a map of that list and it includes geolocation, so you can quickly see if there are any top beers nearby.  It also includes the list of beers for easy searching.
                 <div class="panel panel-primary">
-                  <div class="panel-heading">Features</div>
+                  <div class="panel-heading">Beer Information</div>
                   <ul class="list-group">
-                    <li class="list-group-item">Fullscreen mobile-friendly map template with responsive navbar and modal placeholders</li>
-                    <li class="list-group-item">jQuery loading of external GeoJSON files</li>
-                    <li class="list-group-item">Logical multiple layer marker clustering via the <a href="https://github.com/Leaflet/Leaflet.markercluster" target="_blank">leaflet marker cluster plugin</a></li>
-                    <li class="list-group-item">Elegant client-side multi-layer feature search with autocomplete using <a href="http://twitter.github.io/typeahead.js/" target="_blank">typeahead.js</a></li>
-                    <li class="list-group-item">Responsive sidebar feature list with sorting and filtering via the <a href="https://github.com/turbo87/leaflet-sidebar/" target="_blank">leaflet-sidebar plugin</a> and <a href="http://listjs.com/" target="_blank">list.js</a></li>
-                    <li class="list-group-item">Marker icons included in grouped layer control via the <a href="https://github.com/ismyrnow/Leaflet.groupedlayercontrol" target="_blank">grouped layer control plugin</a></li>
+                    <li class="list-group-item">Name: Name of beer</li>
+                    <li class="list-group-item">Address: Location of beer (brewery)</li>
+                    <li class="list-group-item">ABV: Alcohol By Volume (&#37;)</li>
+                    <li class="list-group-item">Rank: <a href="http://beeradvocate.com" target="_blank">beeradvocate.com</a> rank (1-250)</li>
+                    <li class="list-group-item">Rating: Average rating (1-5)</li>
+                    <li class="list-group-item">Homepage: Beer or brewery web site</li>
+                    <li class="list-group-item">Beer Advocate Page: Beer Advocate's beer review page</li>
                   </ul>
                 </div>
               </div>
@@ -155,55 +156,10 @@
                 <p>The data provided on this site is for informational and planning purposes only.</p>
                 <p>Absolutely no accuracy or completeness guarantee is implied or intended. All information on this map is subject to such variations and corrections as might result from a complete title search and/or accurate field survey.</p>
               </div>
-              <div class="tab-pane fade" id="contact">
-                <form id="contact-form">
-                  <div class="well well-sm">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="first-name">First Name:</label>
-                          <input type="text" class="form-control" id="first-name">
-                        </div>
-                        <div class="form-group">
-                          <label for="last-name">Last Name:</label>
-                          <input type="text" class="form-control" id="last-email">
-                        </div>
-                        <div class="form-group">
-                          <label for="email">Email:</label>
-                          <input type="text" class="form-control" id="email">
-                        </div>
-                      </div>
-                      <div class="col-md-8">
-                        <label for="message">Message:</label>
-                        <textarea class="form-control" rows="8" id="message"></textarea>
-                      </div>
-                      <div class="col-md-12">
-                        <p>
-                          <button type="submit" class="btn btn-primary pull-right" data-dismiss="modal">Submit</button>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
               <div class="tab-pane fade" id="beers-tab">
-                <p>Beer data courtesy of <a href="http://www.beeradvocate.com" target="_blank">Beer Advocate</a>.</p>
+                <p>Beer data from <a href="http://www.beeradvocate.com" target="_blank">Beer Advocate's</a> <a href="http://www.beeradvocate.com/lists/top/" target="_blank">Top 250 Beer List</a>.</p>
               </div>
             </div>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
-    <div class="modal fade" id="legendModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Map Legend</h4>
-          </div>
-          <div class="modal-body">
-            <p>Map Legend goes here...</p>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -227,7 +183,7 @@
           <div class="modal-header">
             <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title">
-              Template developed by <a href='http://bryanmcbride.com'>bryanmcbride.com</a> and modified by <a href="http://www.davidtodd.info" target="_blank">David Todd</a>
+              <a href="https://github.com/bmcbride/bootleaf" target="_blank">Bootleaf</a> template modified by <a href="http://www.davidtodd.info" target="_blank">David Todd</a>
             </h4>
           </div>
           <div class="modal-body">
