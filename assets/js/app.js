@@ -171,7 +171,7 @@ var locateControl = L.control.locate({
   drawCircle: true,
   follow: true,
   setView: true,
-  keepCurrentZoomLevel: true,
+  keepCurrentZoomLevel: false,
   markerStyle: {
     weight: 1,
     opacity: 0.8,
