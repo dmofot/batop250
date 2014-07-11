@@ -44,7 +44,15 @@ function sidebarClick(id) {
 }
 
 /* Basemap Layers */
-var mapboxTiles = L.tileLayer("https://{s}.tiles.mapbox.com/v3/examples.map-i87786ca/{z}/{x}/{y}.png", {
+var mapboxStreet = L.tileLayer("https://{s}.tiles.mapbox.com/v3/examples.map-i87786ca/{z}/{x}/{y}.png", {
+  maxZoom: 21,
+  subdomains: ["a", "b", "c", "d"],
+  attribution: 'Tiles courtesy of <a href="http://www.mapbox.com/" target="_blank">Mapbox</a> '
+});
+
+var mapboxSat = L.tileLayer("http://{s}.tiles.mapbox.com/v3/examples.map-2k9d7u0c/{z}/{x}/{y}.png", {
+  maxZoom: 17,
+  subdomains: ["a", "b", "c", "d"],
   attribution: 'Tiles courtesy of <a href="http://www.mapbox.com/" target="_blank">Mapbox</a> '
 });
 
@@ -55,8 +63,7 @@ var highlight = L.geoJson(null);
 var markerClusters = new L.MarkerClusterGroup({
   spiderfyOnMaxZoom: true,
   showCoverageOnHover: false,
-  zoomToBoundsOnClick: true,
-  //disableClusteringAtZoom: 16
+  zoomToBoundsOnClick: true
 });
 
 /* Empty layer placeholder to add to layer control for listening when to add/remove beers to markerClusters layer */
@@ -76,7 +83,7 @@ var beers = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Name</th><td>" + feature.properties.name + "</td></tr>" + "<tr><th>Address</th><td>" + feature.properties.address + "</td></tr>" + "<tr><th>ABV</th><td>" + feature.properties.abv + "</td></tr>" + "<tr><th>Rank</th><td>" + feature.properties.rank + "</td></tr>" + "<tr><th>Rating</th><td>" + feature.properties.rating + "</td></tr>" + "<tr><th>Website</th><td><a class='url-break' href='" + feature.properties.homepage + "' target='_blank'>" + feature.properties.homepage + "</a></td></tr>" + "<tr><th>BA Page</th><td><a class='url-break' href='" + feature.properties.beeradvocatepage + "' target='_blank'>" + feature.properties.beeradvocatepage + "</a></td></tr>" + "<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Name</th><td>" + feature.properties.name + "</td></tr>" + "<tr><th>Address</th><td>" + feature.properties.address + "</td></tr>" + "<tr><th>ABV</th><td>" + feature.properties.abv + "&#37;" + "</td></tr>" + "<tr><th>Rank</th><td>" + feature.properties.rank + "</td></tr>" + "<tr><th>Rating</th><td>" + feature.properties.rating + "</td></tr>" + "<tr><th>Website</th><td><a class='url-break' href='" + feature.properties.homepage + "' target='_blank'>" + feature.properties.homepage + "</a></td></tr>" + "<tr><th>BA Page</th><td><a class='url-break' href='" + feature.properties.beeradvocatepage + "' target='_blank'>" + feature.properties.beeradvocatepage + "</a></td></tr>" + "<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.name);
@@ -110,7 +117,7 @@ $.getJSON("data/beers.geojson", function (data) {
 map = L.map("map", {
   zoom: 10,
   center: [42.48814, -71.25861],
-  layers: [mapboxTiles, markerClusters, highlight],
+  layers: [mapboxStreet, markerClusters, highlight],
   zoomControl: false,
   attributionControl: false
 });
@@ -208,7 +215,8 @@ if (document.body.clientWidth <= 767) {
 }
 
 var baseLayers = {
-  "Street Map": mapboxTiles
+  "Street Map": mapboxStreet,
+  "Satellite": mapboxSat
 };
 
 var groupedOverlays = {
@@ -284,7 +292,7 @@ $(document).one("ajaxStop", function () {
   }, {
     name: "Beers",
     displayKey: "name",
-    source: brewsBH.ttAdapter(),
+    source: beersBH.ttAdapter(),
     templates: {
       header: "<h4 class='typeahead-header'><img src='assets/img/beer.png' width='24' height='28'>&nbsp;Beers</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
