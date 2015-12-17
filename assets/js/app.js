@@ -44,11 +44,11 @@ function sidebarClick(id) {
 }
 
 /* Basemap Layers */
-var mapboxStreet = L.tileLayer("https://{s}.tiles.mapbox.com/v3/examples.map-i87786ca/{z}/{x}/{y}.png", {
+var mapboxStreet = L.tileLayer("http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png", {
   detectRetina: 'true',
   maxZoom: 21,
   subdomains: ["a", "b", "c", "d"],
-  attribution: 'Tiles courtesy of <a href="http://www.mapbox.com/" target="_blank">Mapbox</a> '
+  attribution: 'Tiles courtesy of <a href="http://www.stamen.com/" target="_blank">Stamen</a> '
 });
 
 var mapboxSat = L.tileLayer("http://{s}.tiles.mapbox.com/v3/examples.map-2k9d7u0c/{z}/{x}/{y}.png", {
